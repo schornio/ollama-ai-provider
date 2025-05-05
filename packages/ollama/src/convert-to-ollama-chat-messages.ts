@@ -58,6 +58,7 @@ export function convertToOllamaChatMessages(
 
         for (const part of content) {
           switch (part.type) {
+            case 'reasoning':
             case 'text': {
               text.push(part.text)
               break
