@@ -74,9 +74,21 @@ export function convertToOllamaChatMessages(
               })
               break
             }
+            case 'file': {
+              throw new UnsupportedFunctionalityError({
+                functionality: 'File parts in assistant messages',
+              })
+            }
+            case 'redacted-reasoning': {
+              throw new UnsupportedFunctionalityError({
+                functionality: 'Redacted reasoning parts in assistant messages',
+              })
+            }
             default: {
               const _exhaustiveCheck: never = part
-              throw new Error(`Unsupported part: ${_exhaustiveCheck}`)
+              throw new Error(
+                `Unsupported part: ${JSON.stringify(_exhaustiveCheck)}`,
+              )
             }
           }
         }
