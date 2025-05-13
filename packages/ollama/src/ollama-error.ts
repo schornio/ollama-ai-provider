@@ -12,7 +12,9 @@ const ollamaErrorDataSchema = z.object({
 
 export type OllamaErrorData = z.infer<typeof ollamaErrorDataSchema>
 
-export const ollamaFailedResponseHandler = createJsonErrorResponseHandler({
+export const ollamaFailedResponseHandler: ReturnType<
+  typeof createJsonErrorResponseHandler
+> = createJsonErrorResponseHandler({
   errorSchema: ollamaErrorDataSchema,
   errorToMessage: (data) => data.error.message,
 })

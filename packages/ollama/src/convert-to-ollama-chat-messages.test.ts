@@ -23,12 +23,17 @@ describe('assistant messages', () => {
   it('should convert messages with only a text part to a string content', async () => {
     const result = convertToOllamaChatMessages([
       {
-        content: [{ text: 'Hello', type: 'text' }],
+        content: [
+          { text: 'Hello', type: 'text' },
+          { text: '<think>thinking</think>', type: 'reasoning' },
+        ],
         role: 'assistant',
       },
     ])
 
-    expect(result).toEqual([{ content: 'Hello', role: 'assistant' }])
+    expect(result).toEqual([
+      { content: 'Hello,<think>thinking</think>', role: 'assistant' },
+    ])
   })
 })
 
